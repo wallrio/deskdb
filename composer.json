@@ -1,0 +1,19 @@
+{
+    "name": "wallrio/deskdb",
+    "description": "A small embedded database, based on JSON format.",
+    "version":"1.0.0",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wallace Rio",
+            "email": "wallrio@gmail.com"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "deskdb\\":"src"
+        }
+    }
+    
+}
