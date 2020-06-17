@@ -105,11 +105,14 @@ class JSON implements DriverInterface{
 				if( strtolower($documentModel->{$key})  != strtolower($value))
 					$listFound[$id] = $documentModel;
 
-			if($operator === '===')				
-				if( ($documentModel->{$key})  === ($value)) $listFound[$id] = $documentModel;
+							
+
+			if($operator === '===')
+				if( (string) ($documentModel->{$key})  === (string) ($value) )				
+					$listFound[$id] = $documentModel;
 
 			if($operator === '!==')				
-				if( ($documentModel->{$key})  !== ($value)) $listFound[$id] = $documentModel;
+				if( (string) ($documentModel->{$key})  !== (string) ($value)) $listFound[$id] = $documentModel;
 			
 
 			if($operator === 'like')
