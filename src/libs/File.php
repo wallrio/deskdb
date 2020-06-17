@@ -1,6 +1,6 @@
 <?php 
 
-namespace deskdb;
+namespace deskdb\libs;
 
 class File{
 

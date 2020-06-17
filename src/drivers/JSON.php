@@ -2,8 +2,8 @@
 
 namespace deskdb\drivers;
 
-use deskdb\File; 
-use deskdb\Strings; 
+use deskdb\libs\File; 
+use deskdb\libs\Strings; 
 use deskdb\Document; 
 
 use deskdb\DriverInterface as DriverInterface;
