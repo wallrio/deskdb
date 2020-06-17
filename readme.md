@@ -21,14 +21,14 @@ $deskdb = new Collection(COLLECTION_NAME,DRIVER);
 - Example
 
 ```php
-use deskdb\drivers\Disk as Disk;
+use deskdb\drivers\JSON as JSON;
 use deskdb\Collection as Collection;
 
-$collection = new Collection('users',new Disk(__DIR__.'/mybase/'));
+$collection = new Collection('users',new JSON(__DIR__.'/mybase/'));
 ```
-> Disk, is the class responsible for effectively carrying out operations.
+> JSON, is the class responsible for effectively carrying out operations.
 
-> Disk, if the contractor's value is omitted, then the system's temporary directory will be used.
+> JSON, if the contractor's value is omitted, then the system's temporary directory will be used.
 
 #### Create a document
 

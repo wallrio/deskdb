@@ -16,10 +16,11 @@ $deskdb->post($user);
 
 #### Create multiple documents
 ```php
-use deskdb\drivers\Disk as Disk;
+use deskdb\drivers\JSON as JSON;
 use deskdb\Collection as Collection;
+use deskdb\Document as Document;
 
-$collection = new Collection('users',new Disk(__DIR__.'/mybase/'));
+$collection = new Collection('users',new JSON(__DIR__.'/mybase/'));
 
 $users = [];
 for ($i=0; $i < 10; $i++) { 
