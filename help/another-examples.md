@@ -16,11 +16,10 @@ $deskdb->post($user);
 
 #### Create multiple documents
 ```php
-$deskdb = new DeskDB([	
-	'base'=>__DIR__.'/mybase/',	
-	'collection'=>'users'
-]);
+use deskdb\drivers\Disk as Disk;
+use deskdb\Collection as Collection;
 
+$collection = new Collection('users',new Disk(__DIR__.'/mybase/'));
 
 $users = [];
 for ($i=0; $i < 10; $i++) { 
@@ -30,5 +29,5 @@ for ($i=0; $i < 10; $i++) {
 	array_unshift($users, $user);
 }
 
-$deskdb->post($users);
+$collection->post($users);
 ```

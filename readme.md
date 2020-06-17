@@ -10,19 +10,25 @@ It's recommended that you use [Composer](https://getcomposer.org/) to install Di
 $ composer require wallrio/deskdb "*"
 ```
 
-#### Instantiate DeskDB to use a collection
+#### Instantiate a collection class
 
 ```php
-use deskdb\DeskDB as DeskDB;
+use deskdb\Collection as Collection;
 
-$deskdb = new DeskDB([
-	'base' 			=>	DIRECTORY_OF_DATABASE,
-	'collection'	=> 	COLLECTION_NAME
-]);
+$deskdb = new Collection(COLLECTION_NAME,DRIVER);
 ```
-> base is optional, if omitted, the system's temporary directory will be used.
 
+- Example
 
+```php
+use deskdb\drivers\Disk as Disk;
+use deskdb\Collection as Collection;
+
+$collection = new Collection('users',new Disk(__DIR__.'/mybase/'));
+```
+> Disk, is the class responsible for effectively carrying out operations.
+
+> Disk, if the contractor's value is omitted, then the system's temporary directory will be used.
 
 #### Create a document
 
@@ -35,7 +41,7 @@ $user->name = "Fulano da Silva";
 $user->username = "fulano";
 $user->password = md5("fulano");
 
-$deskdb->post($user);
+$collection->post($user);
 ```
 > [Another examples](help/another-examples.md)
 
@@ -43,14 +49,14 @@ $deskdb->post($user);
 #### Search all documents in the collection
 
 ```php
-$result = $deskdb->get();
+$result = $collection->get();
 ```
 
 
 #### Search for a document
 
 ```php
-$result = $deskdb->get(KEY,VALUE,OPERATOR);
+$result = $collection->get(KEY,VALUE,OPERATOR);
 ```
 
 - **KEY**: can be any document key
@@ -69,16 +75,16 @@ $result = $deskdb->get(KEY,VALUE,OPERATOR);
 #### Search for the first document occurrence
 
 ```php
-$result = $deskdb->getFirst(KEY,VALUE,OPERATOR);
+$result = $collection->getFirst(KEY,VALUE,OPERATOR);
 ```
 
 
 #### Delete document
 
 ```php
-$result = $deskdb->get();
+$result = $collection->get();
 
-$deskdb->delete($result);
+$collection->delete($result);
 
 ```
 > the value ** delete ** accepts an array of results
@@ -88,12 +94,12 @@ $deskdb->delete($result);
 #### Update document
 
 ```php
-$result = $deskdb->getFirst();
+$result = $collection->getFirst();
 
 $result->name="ANOTHER NAME";
 $result->age="34";
 
-$deskdb->put($result);
+$collection->put($result);
 
 ```
 > the ** put ** value accepts an array of results
