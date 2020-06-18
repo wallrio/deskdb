@@ -144,17 +144,20 @@ class JSON implements DriverInterface{
 	 */
 	public function post($parameters){
 
-		$document = $parameters[0];
 
-		if( is_array($document)){
-			foreach ($document as $key => $value) {			
-				array_push($this->documents, $value);
-			}
+		$documents = isset($parameters[0])?$parameters[0]:null;
+
+		$found = false;
+		$collectionDir = $this->collectionDir;
+
+		if( is_array($documents)){
+			$this->documents = $documents;
 		}else{
-			$this->documents[] = $document;
+			$this->documents = [$documents];
 		}
 
-		$this->execute();
+		return $this->execute();
+
 	}
 
 
@@ -240,11 +243,15 @@ class JSON implements DriverInterface{
 		if(!file_exists($baseDir)) if(@mkdir($baseDir,0777,true) === false) die('Permission denied on directory: '.$baseDir);
 		if(!file_exists($collectionDir)) if(@mkdir($collectionDir,0777,true) === false) die('Permission denied on directory: '.$collectionDir);
 
+		
+		
+
 		foreach ($this->documents as $key => $document) {
 			$documentID = isset($document->_id)?Strings::slugify($document->_id):microtime(true);
 			$documentID = preg_replace('#[\.|\s]#m', '', $documentID);
 			$documentID = md5($documentID);
-				
+			
+
 			if($document === false) continue;
 
 			$checkId = $document->getID();
@@ -255,11 +262,15 @@ class JSON implements DriverInterface{
 			$documentName = $collectionDir.$documentID.'_deskdb.json';			
 			$outDocument->_id = $documentID;
 
+
 			foreach ($document as $keyModel => $valueModel) {				
+				if($valueModel === '') continue;
 				$outDocument->$keyModel = $valueModel;
 			}
+			
 			$found = true;
 			File::save($documentName, json_encode($outDocument));
+			usleep(10);
 		}
 
 		return $found;
