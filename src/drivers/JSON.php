@@ -61,7 +61,7 @@ class JSON implements DriverInterface{
 
 		$key = isset($parameters[0])?$parameters[0]:null;
 		$value = isset($parameters[1])?$parameters[1]:null;
-		$operator = isset($parameters[2])?$parameters[2]:null;
+		$operator = isset($parameters[2])?$parameters[2]:'===';
 	
 		$collectionDir = $this->collectionDir;
 
