@@ -77,6 +77,7 @@ class JSON implements DriverInterface{
 			$documentNameFull = $collectionDir.$documentName;
 			
 			$content = File::load($documentNameFull);
+			if($content === false)continue;
 			$document = json_decode($content);
 
 			$id = str_replace($this->posfixDocument, '', $documentName);
