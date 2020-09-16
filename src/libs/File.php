@@ -10,12 +10,15 @@ class File{
         fclose($fp);
 	}
 
-	public static function load($filename){		
-		$handle = fopen($filename, "rb");
-	    $contents = fread($handle, filesize($filename));
-	    fclose($handle);
+	public static function load($filename){ 
+            $filesize = filesize($filename);
+            if($filesize < 1) return false; 
+            $handle = fopen($filename, "rb");
+        $contents = fread($handle, $filesize);
+        fclose($handle);
 
-	    return $contents;
-	}
+        return $contents;
+    }
+
 	
 }
