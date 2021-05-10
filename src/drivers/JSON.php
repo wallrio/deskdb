@@ -36,7 +36,6 @@ class JSON implements DriverInterface{
 
 		$this->baseDir = $baseDir;
 
-		if(!file_exists($baseDir)) if(@mkdir($baseDir,0777,true) === false) die('Permission denied on directory: '.$baseDir);
 	}
 
 	public function setCollectionName($collectionName){
@@ -50,7 +49,6 @@ class JSON implements DriverInterface{
 		
 		$collectionDir = preg_replace('#\/\/#m', '/', $collectionDir);
 		$this->collectionDir = $collectionDir;
-		if(!file_exists($collectionDir)) if(@mkdir($collectionDir,0777,true) === false) die('Permission denied on directory: '.$collectionDir);
 	}
 	
 
