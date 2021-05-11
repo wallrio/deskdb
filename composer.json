@@ -1,7 +1,7 @@
 {
     "name": "wallrio/deskdb",
     "description": "A small embedded database, based on JSON format.",
-    "version":"1.0.2",
+    "version":"1.0.3",
     "type": "library",
     "license": "MIT",
     "authors": [

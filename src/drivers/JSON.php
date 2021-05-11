@@ -81,6 +81,7 @@ class JSON implements DriverInterface{
 			$id = str_replace($this->posfixDocument, '', $documentName);
 
 			$documentModel = new Document;
+			if(is_object($document) || is_array($document))
 			foreach ($document as $keyModel => $valueModel) {
 				if (property_exists($documentModel, $keyModel)){	
 					$documentModel->setID($id);
