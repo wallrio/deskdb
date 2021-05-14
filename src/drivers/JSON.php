@@ -63,13 +63,18 @@ class JSON implements DriverInterface{
 	
 		$collectionDir = $this->collectionDir;
 
+		$listFound = [];
+
+		if( !file_exists($collectionDir)){
+			return $listFound;
+		}
+		
 		$dirArray = scandir($collectionDir);
 		foreach ($dirArray as $keyDir => $valueDir) {
 			if($valueDir === '.' || $valueDir === '..') unset($dirArray[$keyDir]);
 		}
 		$dirArray = array_values($dirArray);
 
-		$listFound = [];
 		
 		foreach ($dirArray as $keyDir => $documentName) {
 			$documentNameFull = $collectionDir.$documentName;
