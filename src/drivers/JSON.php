@@ -268,8 +268,7 @@ class JSON implements DriverInterface{
 			$outDocument->_id = $documentID;
 
 
-			foreach ($document as $keyModel => $valueModel) {				
-				if($valueModel === '') continue;
+			foreach ($document as $keyModel => $valueModel) {						
 				$outDocument->$keyModel = $valueModel;
 			}
 			
